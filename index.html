@@ -178,33 +178,35 @@
     </div>
   </template>
   <script>
+    'use strict';
+    const fireballSize = 22;
+    const minFireballSpeed = 2;
+    const maxFireballSpeed = 50;
 
-    var fireballSize = 22;
-    var minFireballSpeed = 2;
-    var maxFireballSpeed = 50;
-
-    var getFireballSpeed = function (isMovingLeft) {
+    let getFireballSpeed = function (isMovingLeft) {
       return isMovingLeft ? minFireballSpeed : maxFireballSpeed;
     }
 
-    var wizardWidth = 70;
-    var wizardHeightRatio = 1.337;
+    const wizardWidth = 70;
+    const wizardHeightRatio = 1.337;
 
-    var getWizardHeight = function () {
+    let getWizardHeight = function () {
       return wizardHeightRatio * wizardWidth;
     }
 
-    var wizardSpeed = 3;
+    const wizardSpeed = 3;
 
-    var getWizardX = function (gameFieldWidth) {
+    let getWizardX = function (gameFieldWidth) {
       return (gameFieldWidth - wizardWidth) / 2;
     }
-    var startPositionWizard = 1 / 3;
+    const startPositionWizard = 1 / 3;
 
-    var getWizardY = function (gameFieldHeight) {
+    let getWizardY = function (gameFieldHeight) {
       return gameFieldHeight * startPositionWizard;
     }
+
   </script>
+  <script src="js/stat.js"></script>
   <script src="js/game.js"></script>
 
 </body>
