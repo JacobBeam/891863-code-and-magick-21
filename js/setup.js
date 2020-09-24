@@ -7,6 +7,7 @@ const names = [`Иван`, `Хуан Себастьян`, `Мария`, `Кри�
 const surnames = [`да Марья`, `Верон`, `Мирабелла`, `Вальц`, `Онопко`, `Топольницкая`, `Нионго`, `Ирвинг`];
 const coatColos = [`rgb(101, 137, 164)`, `rgb(241, 43, 107)`, `rgb(146, 100, 161)`, `rgb(56, 159, 117)`, `rgb(215, 210, 55)`, `rgb(0, 0, 0)`];
 const eyesColors = [`black`, `red`, `blue`, `yellow`, `green`];
+const amountWizards = 4;
 
 let getRandomNumber = function (min, max) {
   let random = min + Math.random() * (max + 1 - min);
@@ -20,10 +21,10 @@ let getRandomName = function (arrNames, arrSurnames) {
   return (0.5 - Math.random() <= 0) ? `${randomName} ${randomSurname}` : `${randomSurname} ${randomName}`;
 };
 
-let getArrayWizards = function (arrNames, arrSurnames, arrCoatColos, arrEyesColors, amountWizards) {
+let getArrayWizards = function (arrNames, arrSurnames, arrCoatColos, arrEyesColors, amount) {
   let arrayWizards = [];
 
-  for (let i = 0; i < amountWizards; i++) {
+  for (let i = 0; i < amount; i++) {
     let objWizard = {
       name: getRandomName(arrNames, arrSurnames),
       coatColor: arrCoatColos[getRandomNumber(0, arrCoatColos.length - 1)],
@@ -35,7 +36,7 @@ let getArrayWizards = function (arrNames, arrSurnames, arrCoatColos, arrEyesColo
   return arrayWizards;
 };
 
-let wizards = getArrayWizards(names, surnames, coatColos, eyesColors, 4);
+let wizards = getArrayWizards(names, surnames, coatColos, eyesColors, amountWizards);
 
 const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
   .content.querySelector(`.setup-similar-item`);
