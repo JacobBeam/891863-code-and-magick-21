@@ -13,35 +13,29 @@ let getRandomNumber = function (min, max) {
   return Math.floor(random);
 };
 
-let getRandomName = function () {
-  let randomName = names[getRandomNumber(0, names.length - 1)];
-  let randomSurname = surnames[getRandomNumber(0, surnames.length - 1)];
+let getRandomName = function (arrNames, arrSurnames) {
+  let randomName = arrNames[getRandomNumber(0, arrNames.length - 1)];
+  let randomSurname = arrSurnames[getRandomNumber(0, arrSurnames.length - 1)];
 
   return (0.5 - Math.random() <= 0) ? `${randomName} ${randomSurname}` : `${randomSurname} ${randomName}`;
 };
 
-const wizards = [
-  {
-    name: getRandomName(),
-    coatColor: coatColos[getRandomNumber(0, coatColos.length - 1)],
-    eyesColor: eyesColors[getRandomNumber(0, eyesColors.length - 1)]
-  },
-  {
-    name: getRandomName(),
-    coatColor: coatColos[getRandomNumber(0, coatColos.length - 1)],
-    eyesColor: eyesColors[getRandomNumber(0, eyesColors.length - 1)]
-  },
-  {
-    name: getRandomName(),
-    coatColor: coatColos[getRandomNumber(0, coatColos.length - 1)],
-    eyesColor: eyesColors[getRandomNumber(0, eyesColors.length - 1)]
-  },
-  {
-    name: getRandomName(),
-    coatColor: coatColos[getRandomNumber(0, coatColos.length - 1)],
-    eyesColor: eyesColors[getRandomNumber(0, eyesColors.length - 1)]
-  }];
+let getArrayWizards = function (arrNames, arrSurnames, arrCoatColos, arrEyesColors, amountWizards) {
+  let arrayWizards = [];
 
+  for (let i = 0; i < amountWizards; i++) {
+    let objWizard = {
+      name: getRandomName(arrNames, arrSurnames),
+      coatColor: arrCoatColos[getRandomNumber(0, arrCoatColos.length - 1)],
+      eyesColor: arrEyesColors[getRandomNumber(0, arrEyesColors.length - 1)]
+    };
+    arrayWizards[i] = objWizard;
+  }
+
+  return arrayWizards;
+};
+
+let wizards = getArrayWizards(names, surnames, coatColos, eyesColors, 4);
 
 const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
   .content.querySelector(`.setup-similar-item`);
