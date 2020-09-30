@@ -1,12 +1,13 @@
 'use strict';
 
 const setup = document.querySelector(`.setup`);
-setup.classList.remove(`hidden`);
+
 
 const names = [`Иван`, `Хуан Себастьян`, `Мария`, `Кристоф`, `Виктор`, `Юлия`, `Люпита`, `Вашингтон`];
 const surnames = [`да Марья`, `Верон`, `Мирабелла`, `Вальц`, `Онопко`, `Топольницкая`, `Нионго`, `Ирвинг`];
 const coatColos = [`rgb(101, 137, 164)`, `rgb(241, 43, 107)`, `rgb(146, 100, 161)`, `rgb(56, 159, 117)`, `rgb(215, 210, 55)`, `rgb(0, 0, 0)`];
 const eyesColors = [`black`, `red`, `blue`, `yellow`, `green`];
+const fireballColors = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
 const amountWizards = 4;
 
 let getRandomNumber = function (min, max) {
@@ -49,10 +50,10 @@ let renderWizards = function (wizard) {
   return newWizard;
 };
 
-let getWizardsBlock = function (arrey) {
+let getWizardsBlock = function (array) {
   let fragment = document.createDocumentFragment();
-  for (let i = 0; i < arrey.length; i++) {
-    fragment.append(renderWizards(arrey[i]));
+  for (let i = 0; i < array.length; i++) {
+    fragment.append(renderWizards(array[i]));
   }
   return fragment;
 };
@@ -61,3 +62,73 @@ const similarWizardsList = setup.querySelector(`.setup-similar-list`);
 similarWizardsList.append(getWizardsBlock(wizards));
 
 setup.querySelector(`.setup-similar`).classList.remove(`hidden`);
+
+const setupOpen = document.querySelector(`.setup-open`);
+const setupClose = setup.querySelector(`.setup-close`);
+const inputName = setup.querySelector(`.setup-user-name`);
+
+
+const onPopupEscPress = function (evt) {
+  if (evt.key === `Escape` && inputName !== document.activeElement) {
+    evt.preventDefault();
+    closePopup();
+  }
+};
+
+
+const openPopup = function () {
+  setup.classList.remove(`hidden`);
+  document.addEventListener(`keydown`, onPopupEscPress);
+};
+
+const closePopup = function () {
+  setup.classList.add(`hidden`);
+  document.removeEventListener(`keydown`, onPopupEscPress);
+};
+
+setupOpen.addEventListener(`click`, function () {
+  openPopup();
+});
+
+setupOpen.addEventListener(`keydown`, function (evt) {
+  if (evt.key === `Enter`) {
+    evt.preventDefault();
+    openPopup();
+  }
+});
+
+setupClose.addEventListener(`click`, function () {
+  closePopup();
+});
+
+setupClose.addEventListener(`keydown`, function (evt) {
+  if (evt.key === `Enter`) {
+    evt.preventDefault();
+    closePopup();
+  }
+});
+
+
+const setupPlayerCoat = setup.querySelector(`.wizard-coat`);
+const inputPlayerCoat = setup.querySelector(`input[name="coat-color"]`);
+
+setupPlayerCoat.addEventListener(`click`, function () {
+  setupPlayerCoat.style.fill = coatColos[getRandomNumber(0, coatColos.length - 1)];
+  inputPlayerCoat.value = setupPlayerCoat.style.fill;
+});
+
+const setupPlayerEyes = setup.querySelector(`.wizard-eyes`);
+const inputPlayerEyes = setup.querySelector(`input[name="eyes-color"]`);
+
+setupPlayerEyes.addEventListener(`click`, function () {
+  setupPlayerEyes.style.fill = eyesColors[getRandomNumber(0, eyesColors.length - 1)];
+  inputPlayerEyes.value = setupPlayerEyes.style.fill;
+});
+
+const setupPlayerFireball = setup.querySelector(`.setup-fireball-wrap`);
+const inputPlayerFireball = setup.querySelector(`input[name="fireball-color"]`);
+
+setupPlayerFireball.addEventListener(`click`, function () {
+  setupPlayerFireball.style.backgroundColor = fireballColors[getRandomNumber(0, fireballColors.length - 1)];
+  inputPlayerFireball.value = setupPlayerFireball.style.backgroundColor;
+});
