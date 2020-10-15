@@ -6,8 +6,8 @@
   const fireballColors = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
 
   let wizard = {
-    onEyesChange: function (color) { },
-    onCoatChange: function (color) { }
+    onEyesChange: function () { },
+    onCoatChange: function () { }
   };
 
   const setupPlayerCoat = setup.querySelector(`.wizard-coat`);

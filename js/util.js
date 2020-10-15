@@ -1,27 +1,27 @@
 'use strict';
 (function () {
 
-  let DEBOUNCE_INTERVAL = 300;
+  let DEBOUNCE_INTERVAL = 500;
 
   window.util = {
     debounce(cb) {
       let lastTimeout = null;
 
-      return function () {
-        let parameters = arguments;
-        if (lastTimeout) {
-          window.clearTimeout(lastTimeout);
-        }
-        lastTimeout = window.setTimeout(function () {
+      //  return function () {
+      //  let parameters = arguments;
+      //  if (lastTimeout) {
+      //    window.clearTimeout(lastTimeout);
+      //  }
+      //  lastTimeout = window.setTimeout(function () {
 
-          cb.apply(null, parameters);
-        }, DEBOUNCE_INTERVAL);
+      //    cb.apply(null, parameters);
+      //  }, DEBOUNCE_INTERVAL);
 
-        // if (lastTimeout) {
-        //  window.clearTimeout(lastTimeout);
-        // }
-        // lastTimeout = window.setTimeout(cb, DEBOUNCE_INTERVAL);
-      };
+      if (lastTimeout) {
+        window.clearTimeout(lastTimeout);
+      }
+      lastTimeout = window.setTimeout(cb, DEBOUNCE_INTERVAL);
+
     },
     isEscEvent(evt, action, input) {
       if (evt.key === `Escape` && input !== document.activeElement) {

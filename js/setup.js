@@ -66,28 +66,28 @@
   });
 
 
-  window.wizard.setEyesChangeHandler(window.util.debounce(function (color) {
-    eyesColor = color;
-    updateWizards();
-  }));
-
-  window.wizard.setCoatChangeHandler(window.util.debounce(function (color) {
-    coatColor = color;
-    updateWizards();
-  }));
-
-
-  // window.wizard.setEyesChangeHandler(function (color) {
+  // window.wizard.setEyesChangeHandler(window.util.debounce(function (color) {
   //  eyesColor = color;
+  //  updateWizards();
+  // }));
 
-  //  window.util.debounce(updateWizards);
-  // });
-
-  // window.wizard.setCoatChangeHandler(function (color) {
+  // window.wizard.setCoatChangeHandler(window.util.debounce(function (color) {
   //  coatColor = color;
+  //  updateWizards();
+  // }));
 
-  //  window.util.debounce(updateWizards);
-  // });
+
+  window.wizard.setEyesChangeHandler(function (color) {
+    eyesColor = color;
+
+    window.util.debounce(updateWizards);
+  });
+
+  window.wizard.setCoatChangeHandler(function (color) {
+    coatColor = color;
+
+    window.util.debounce(updateWizards);
+  });
 
 
 })();
